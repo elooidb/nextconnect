@@ -18,9 +18,9 @@
       href="https://ase-foundation-web-uat-eastus-001.azurewebsites.net/favicon.ico"
     />
     <!-- src/index.html -->
-    <link rel="stylesheet" href="./TABLE_files/styles.css" />
-    <script src="./TABLE_files/places.js"></script>
-    <script src="./TABLE_files/main.js"></script>
+    <link rel="stylesheet" href="./nextconnect/TABLE_files/styles.css" />
+    <script src="./nextconnect/TABLE_files/places.js"></script>
+    <script src="./nextconnect/TABLE_files/main.js"></script>
     <style type="text/css"></style>
     <style>
       [_nghost-ng-c750168442] {
@@ -872,12 +872,12 @@
     <script
       type="text/javascript"
       charset="UTF-8"
-      src="./TABLE_files/common.js"
+      src="./nextconnect/TABLE_files/common.js"
     ></script>
     <script
       type="text/javascript"
       charset="UTF-8"
-      src="./TABLE_files/util.js"
+      src="./nextconnect/TABLE_files/util.js"
     ></script>
     <style>
       .mat-ripple {
@@ -6435,7 +6435,7 @@ question_mark</span></span
                     ng-reflect-router-link-active="active"
                     ng-reflect-router-link="/home"
                     ng-reflect-router-link-active-options="[object Object]"
-                    href="/health-ingsights-global.html"
+                    href="/nextconnect/health-ingsights-global.html"
                   >
                     Global </a
                   >
@@ -6447,7 +6447,7 @@ question_mark</span></span
                     ng-reflect-router-link-active="active"
                     ng-reflect-router-link="/home"
                     ng-reflect-router-link-active-options="[object Object]"
-                    href="/health-ingsights-siteA.html"
+                    href="/nextconnect/health-ingsights-siteA.html"
                   >
                     Site A </a
                   >
@@ -6459,7 +6459,7 @@ question_mark</span></span
                     ng-reflect-router-link-active="active"
                     ng-reflect-router-link="/home"
                     ng-reflect-router-link-active-options="[object Object]"
-                    href="/health-ingsights-siteB.html"
+                    href="/nextconnect/health-ingsights-siteB.html"
                   >
                     Site B </a
                   >
@@ -6471,7 +6471,7 @@ question_mark</span></span
                     ng-reflect-router-link-active="active"
                     ng-reflect-router-link="/home"
                     ng-reflect-router-link-active-options="[object Object]"
-                    href="/health-ingsights-siteC.html"
+                    href="/nextconnect/health-ingsights-siteC.html"
                   >
                     Site C </a
                   >
@@ -6551,29 +6551,7 @@ question_mark</span></span
 
 
 
-                    <div class="elooicontainer">
-                      
-                      <div class="elooibox red">
-                        <h3>1 Priority Health incidents under investigation</h3>
-                        <p>total 1MW at risk</p>
-                      </div>
-
-                      <div class="elooibox orange">
-                        <h3>1 Medium Health incidents under investigation</h3>
-                        <p>total 500kVA at risk</p>
-                      </div>
-
-                      <div class="elooibox green">
-                        <h3>0 Planned Service Requests</h3>
-                        <p>total 0kW at risk</p>
-                      </div>
-
-                      <div class="elooibox gray">
-                        <h3>4 Closed Health Service Requests</h3>
-                        <p>total 25kW risk avoided</p>
-                      </div>
-
-                    </div>
+                    
 
 
 
@@ -6863,10 +6841,7 @@ question_mark</span></span
                     </div>
 
 <!--ELOOOI TABLE-->
-<div class="elooicontainer">
-                      
-                      <div class="elooibox wide">
-                        <table
+<table
                       _ngcontent-ng-c560033025=""
                       mat-table=""
                       matsort=""
@@ -6898,7 +6873,7 @@ question_mark</span></span
                             mat-header-cell=""
                             class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
                           >
-                            Asset
+                            Date
                           </th>
                           <th
                             _ngcontent-ng-c560033025=""
@@ -6906,7 +6881,7 @@ question_mark</span></span
                             mat-header-cell=""
                             class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
                           >
-                            Location
+                            Site
                           </th>
                           <th
                             _ngcontent-ng-c560033025=""
@@ -6914,7 +6889,7 @@ question_mark</span></span
                             mat-header-cell=""
                             class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
                           >
-                            Warranty Status
+                            Status
                           </th>
                           <th
                             _ngcontent-ng-c560033025=""
@@ -6922,7 +6897,63 @@ question_mark</span></span
                             mat-header-cell=""
                             class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
                           >
-                            Remaining Days
+                            Device
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Model
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Capacity
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Helath Incident Name
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Severity
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Description
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Impact
+                          </th>
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Recommendation
                           </th>
                             
                           </th>
@@ -6950,28 +6981,77 @@ question_mark</span></span
                             mat-cell=""
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
                             role="cell"
-                          > Asset 1
+                          > 05-SEPT-25
                           </td>
                           <td
                             _ngcontent-ng-c560033025=""
                             mat-cell=""
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
                             role="cell"
-                          > Site 2
+                          > Compressor|2|A|Useful Life Remaining|THRS
                           </td>
                           <td
                             _ngcontent-ng-c560033025=""
                             mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select red"
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
                             role="cell"
-                          > Out
+                          > Medium
                           </td>
                           <td
                             _ngcontent-ng-c560033025=""
                             mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select red"
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
                             role="cell"
-                          > 5
+                          > DFW-III-2-5-AC-23
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
+                          </td>
+                          <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
+                            role="cell"
+                          > Data
                           </td>
                         </tr>
 
@@ -7022,226 +7102,7 @@ question_mark</span></span
 
 
                   </table>
-                      </div>
 
-                      <div class="elooibox wide ">
-                        <table
-                      _ngcontent-ng-c560033025=""
-                      mat-table=""
-                      matsort=""
-                      class="mat-mdc-table mdc-data-table__table cdk-table mat-sort full-width"
-                      role="table"
-                      ng-reflect-data-source="[object Object]"
-                      ng-reflect-active="name"
-                      ng-reflect-direction="asc"
-                      ng-reflect-ng-class="[object Object]"
-                    >
-
-                    <thead role="rowgroup">
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-header-row=""
-                          class="mat-mdc-header-row mdc-data-table__header-row cdk-header-row"
-                        >
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-select mat-column-select"
-                          >
-
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Site
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Power
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Thermal
-                          </th>
-                          
-                            
-                          </th>
-                        </tr>
-                    </thead>
-
-
-                    <tbody role="rowgroup" class="mdc-data-table__content">
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-row=""
-                          class="mat-mdc-row mdc-data-table__row cdk-row"
-                        >
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > 
-                          </td>
-
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Site A
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 100kVA
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select red"
-                            role="cell"
-                          > 1MW
-                          </td>
-                          
-                        </tr>
-
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-row=""
-                          class="mat-mdc-row mdc-data-table__row cdk-row"
-                        >
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > 
-                          </td>
-
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Site B
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 250kVA
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 500kW
-                          </td>
-                          
-                        </tr>
-
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-row=""
-                          class="mat-mdc-row mdc-data-table__row cdk-row"
-                        >
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > 
-                          </td>
-
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Site C
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 50kVA
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 400kW
-                          </td>
-                          
-                        </tr>
-
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-row=""
-                          class="mat-mdc-row mdc-data-table__row cdk-row"
-                        >
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > 
-                          </td>
-
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Site D
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select orange"
-                            role="cell"
-                          > 500kVA
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 300kW
-                          </td>
-                          
-                        </tr>
-                    </tbody>
-
-
-                  </table>
-                      </div>
-
-                      
-                    </div>
                     
 
                   
@@ -7268,7 +7129,7 @@ question_mark</span></span
 }--></app-main
       ><!--container--></app-root
     >
-    <script src="./TABLE_files/js"></script>
+    <script src="./nextconnect/TABLE_files/js"></script>
     <link
       rel="modulepreload"
       href="https://ase-foundation-web-uat-eastus-001.azurewebsites.net/chunk-TQLEZEQV.js"
@@ -7279,8 +7140,8 @@ question_mark</span></span
       rel="modulepreload"
       href="https://ase-foundation-web-uat-eastus-001.azurewebsites.net/chunk-PEHFQLBM.js"
     />
-    <script src="./TABLE_files/polyfills.js" type="module"></script>
-    <script src="./TABLE_files/main(1).js" type="module"></script>
+    <script src="./nextconnect/TABLE_files/polyfills.js" type="module"></script>
+    <script src="./nextconnect/TABLE_files/main(1).js" type="module"></script>
 
     <div class="cdk-overlay-container"></div>
     <div
