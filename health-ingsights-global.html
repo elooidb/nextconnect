@@ -52,6 +52,60 @@
         }
       }
     </style>
+	<style>
+  .gauge-container {
+    display: inline-block;
+    text-align: center;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .gauge-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+
+  .gauge {
+    width: 200px;
+    height: 100px;
+    background: conic-gradient(
+      #4caf50 0deg,
+      #ddd 0deg 180deg
+    );
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: background 1s linear;
+  }
+
+  .gauge::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 80px;
+    background: white;
+    border-radius: 80px 80px 0 0;
+    z-index: 1;
+  }
+
+  .gauge-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    font-size: 1.6em;
+    font-weight: bold;
+    z-index: 2;
+    color: #333;
+  }
+</style>
     <style>
 .elooicontainer {
   display: flex;
@@ -6449,7 +6503,7 @@ question_mark</span></span
                     ng-reflect-router-link-active-options="[object Object]"
                     href="/nextpredict/health-ingsights-siteA.html"
                   >
-                    Site A </a
+                    DFW-III-2-5-AC-23 </a
                   >
                   <a
                     _ngcontent-ng-c3699426250=""
@@ -6461,7 +6515,7 @@ question_mark</span></span
                     ng-reflect-router-link-active-options="[object Object]"
                     href="/nextpredict/health-ingsights-siteB.html"
                   >
-                    Site B </a
+                    DFW-III-2-5-AC-24 </a
                   >
                   <a
                     _ngcontent-ng-c3699426250=""
@@ -6473,7 +6527,7 @@ question_mark</span></span
                     ng-reflect-router-link-active-options="[object Object]"
                     href="/nextpredict/health-ingsights-siteC.html"
                   >
-                    Site C </a
+                    DFW-III-2-5-AC-25 </a
                   >
                   <!--bindings={
   "ng-reflect-ng-if": "true"
@@ -6550,9 +6604,14 @@ question_mark</span></span
                     </div>
 
 
-
+					<div class="gauge-container">
+  						<div class="gauge-title">Uptime</div>
+  						<div class="gauge" style="--value: 90%;">
+    						<div class="gauge-value">90%</div>
+  						</div>
+					</div>
+					  
                     <div class="elooicontainer">
-                      
                       <div class="elooibox red">
                         <h3>1 Priority Health incidents under investigation</h3>
                         <p>total 1MW at risk</p>
@@ -6924,7 +6983,14 @@ question_mark</span></span
                           >
                             Remaining Days
                           </th>
-                            
+                          <th
+                            _ngcontent-ng-c560033025=""
+                            role="columnheader"
+                            mat-header-cell=""
+                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
+                          >
+                            Age Days
+                          </th>  
                           </th>
                         </tr>
                     </thead>
@@ -6973,6 +7039,13 @@ question_mark</span></span
                             role="cell"
                           > 5
                           </td>
+						  <td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
+                            role="cell"
+                          > 1825
+                          </td>
                         </tr>
 
                         <tr
@@ -7016,6 +7089,13 @@ question_mark</span></span
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
                             role="cell"
                           > 126
+                          </td>
+							<td
+                            _ngcontent-ng-c560033025=""
+                            mat-cell=""
+                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
+                            role="cell"
+                          > 3650
                           </td>
                         </tr>
                     </tbody>
@@ -7102,7 +7182,7 @@ question_mark</span></span
                             mat-cell=""
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
                             role="cell"
-                          > Site A
+                          > DFW-III-2-5-AC-23
                           </td>
                           <td
                             _ngcontent-ng-c560033025=""
@@ -7140,7 +7220,7 @@ question_mark</span></span
                             mat-cell=""
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
                             role="cell"
-                          > Site B
+                          > DFW-III-2-5-AC-24
                           </td>
                           <td
                             _ngcontent-ng-c560033025=""
@@ -7178,7 +7258,7 @@ question_mark</span></span
                             mat-cell=""
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
                             role="cell"
-                          > Site C
+                          > DFW-III-2-5-AC-25
                           </td>
                           <td
                             _ngcontent-ng-c560033025=""
@@ -7209,28 +7289,6 @@ question_mark</span></span
                             class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
                             role="cell"
                           > 
-                          </td>
-
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Site D
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select orange"
-                            role="cell"
-                          > 500kVA
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select green"
-                            role="cell"
-                          > 300kW
                           </td>
                           
                         </tr>
