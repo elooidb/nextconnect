@@ -52,6 +52,53 @@
         }
       }
     </style>
+	<style>
+  .gauge-container {
+    display: inline-block;
+    text-align: center;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .gauge-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+
+  .gauge {
+    width: 200px;
+    height: 100px;
+    background: conic-gradient(
+      #4caf50 var(--value, 50%) 0deg,
+      #ddd var(--value, 50%) 180deg
+    );
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gauge::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 80px;
+    background: white;
+    border-radius: 80px 80px 0 0;
+  }
+
+  .gauge-value {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+</style>
     <style>
 .elooicontainer {
   display: flex;
@@ -6550,9 +6597,14 @@ question_mark</span></span
                     </div>
 
 
-
+					<div class="gauge-container">
+  						<div class="gauge-title">Uptime</div>
+  						<div class="gauge" style="--value: 99.995%;">
+    						<div class="gauge-value">99.995%</div>
+  						</div>
+					</div>
+					  
                     <div class="elooicontainer">
-                      
                       <div class="elooibox red">
                         <h3>1 Priority Health incidents under investigation</h3>
                         <p>total 1MW at risk</p>
