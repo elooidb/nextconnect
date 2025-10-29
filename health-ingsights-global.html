@@ -70,8 +70,8 @@
     width: 200px;
     height: 100px;
     background: conic-gradient(
-      #4caf50 var(--value, 50%) 0deg,
-      #ddd var(--value, 50%) 180deg
+      #4caf50 0deg,
+      #ddd 0deg 180deg
     );
     border-radius: 100px 100px 0 0;
     position: relative;
@@ -79,6 +79,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    transition: background 1s linear;
   }
 
   .gauge::before {
