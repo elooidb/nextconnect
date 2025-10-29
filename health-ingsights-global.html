@@ -76,6 +76,9 @@
     border-radius: 100px 100px 0 0;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   .gauge::before {
@@ -88,15 +91,18 @@
     height: 80px;
     background: white;
     border-radius: 80px 80px 0 0;
+    z-index: 1;
   }
 
   .gauge-value {
     position: absolute;
-    bottom: 10px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.5em;
+    transform: translate(-50%, -30%);
+    font-size: 1.6em;
     font-weight: bold;
+    z-index: 2;
+    color: #333;
   }
 </style>
     <style>
@@ -6599,8 +6605,8 @@ question_mark</span></span
 
 					<div class="gauge-container">
   						<div class="gauge-title">Uptime</div>
-  						<div class="gauge" style="--value: 99.995%;">
-    						<div class="gauge-value">99.995%</div>
+  						<div class="gauge" style="--value: 90%;">
+    						<div class="gauge-value">90%</div>
   						</div>
 					</div>
 					  
