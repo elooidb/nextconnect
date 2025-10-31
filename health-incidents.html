@@ -77,6 +77,41 @@
   background-color: #5b5858;}
   .elooibox.wide{width: 600px}
 </style>
+
+<style>
+  /* Container for horizontal scroll */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Firefox */
+  }
+
+  /* Optional: style the scrollbar for WebKit browsers (Chrome, Safari) */
+  .table-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Ensure table doesn’t shrink and keeps readable columns */
+  .table-container table {
+    min-width: 1200px;
+    border-collapse: collapse;
+  }
+</style>
     <style>
       mat-icon,
       mat-icon.mat-primary,
@@ -6844,6 +6879,8 @@ question_mark</span></span
                     </div>
 
 <!--ELOOOI TABLE-->
+
+<div class="table-container">
 <table
                       _ngcontent-ng-c560033025=""
                       mat-table=""
@@ -7155,7 +7192,7 @@ question_mark</span></span
 
 
                   </table>
-
+</div>
                     
 
                   
