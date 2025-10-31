@@ -59,12 +59,17 @@
       height: 200px;
       position: relative;
     }
-
+	.gauge-title {
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
     .gauge-label {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-75%, -75%);
+      transform: translate(-40%, -40%);
       font-size: 1.8em;
       font-weight: bold;
       color: #fff;
@@ -6569,7 +6574,8 @@ question_mark</span></span
 					  
                     <div class="elooicontainer">
 
-						<div class="gauge-container">
+	<div class="gauge-container">
+	<div class="gauge-title">Uptime</div>
     <canvas id="gaugeChart"></canvas>
     <div class="gauge-label" id="gaugeLabel">99.995%</div>
   </div>
