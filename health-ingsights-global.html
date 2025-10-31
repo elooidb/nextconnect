@@ -52,46 +52,24 @@
         }
       }
     </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-.gauge {
-  width: 150px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .gauge-container {
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
 
-.gauge__body {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: conic-gradient(
-    #4caf50 calc(var(--percentage) * 1%),
-    #ddd 0
-  );
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.gauge__fill {
-  --percentage: 0;
-}
-
-.gauge__cover {
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  background: #fff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-</style>
+    .gauge-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
     <style>
 .elooicontainer {
   display: flex;
@@ -6590,12 +6568,38 @@ question_mark</span></span
                     </div>
 					  
                     <div class="elooicontainer">
-                      <div class="gauge">
-  <div class="gauge__body">
-    <div class="gauge__fill" style="--percentage: 90;"></div>
-    <div class="gauge__cover">90%</div>
+
+						<div class="gauge-container">
+    <canvas id="gaugeChart"></canvas>
+    <div class="gauge-label" id="gaugeLabel">99.995%</div>
   </div>
-</div>
+
+  <script>
+    const ctx = document.getElementById('gaugeChart');
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [90, 10], // 90% filled, 10% empty
+          backgroundColor: ['#4caf50', '#e0e0e0'],
+          borderWidth: 0,
+          cutout: '80%',
+          circumference: 180,
+          rotation: 270
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: { enabled: false },
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+						
 						<div class="elooibox red">
                         <h1>1</h1>
 						  <h3>Priority Health incidents under investigation</h3>
