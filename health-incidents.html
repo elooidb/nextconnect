@@ -55,6 +55,37 @@
         }
       }
     </style>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .chart-container {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px 40px;
+            width: 80%;
+            max-width: 900px;
+        }
+        .chart-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            color: #333;
+        }
+        canvas {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
     <style>
 .elooicontainer {
   display: flex;
@@ -6881,102 +6912,105 @@ question_mark</span></span
 <!--ELOOOI TABLE-->
 
 <h2>Health Incident Distribution</h2>
+<div class="chart-container">
+        <canvas id="paretoChart"></canvas>
+    </div>
 
-<div class="elooicontainer">
+    <script>
+        const ctx = document.getElementById('paretoChart').getContext('2d');
 
-					  <!-- Devices pie chart snippet - drop this into any existing page -->
-<!-- Requires: Chart.js (loaded from CDN below). The snippet is self-contained and avoids global name collisions. -->
-<div id="devices-pie-container" style="max-width:420px; width:100%;">
-  <div style="position:relative;padding-top:56.25%;">
-    <canvas id="devices-pie-chart" aria-label="Devices status pie chart" role="img" style="position:absolute;left:0;top:0;width:100%;height:100%;"></canvas>
-  </div>
-  <div id="devices-pie-legend" style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:14px;margin-top:8px;text-align:center"></div>
-</div>
+        // Data
+        const categories = ["Compressor Short Cycling", "Fan Malfunction", "Suboptimal Setpoints", "Clogged Filter"];
+        const values = [70, 40, 30, 10];
 
-<noscript>
-  <table aria-label="Devices status" style="border-collapse:collapse;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
-    <tr><th style="text-align:left;padding:4px">Status</th><th style="text-align:right;padding:4px">Count</th></tr>
-    <tr><td style="padding:4px">Devices Online</td><td style="padding:4px;text-align:right">945</td></tr>
-    <tr><td style="padding:4px">Devices Offline</td><td style="padding:4px;text-align:right">18</td></tr>
-    <tr><td style="padding:4px">Devices not monitored</td><td style="padding:4px;text-align:right">10</td></tr>
-  </table>
-</noscript>
+        // Sort descending for Pareto
+        const sortedData = categories.map((cat, i) => ({category: cat, value: values[i]}))
+                                     .sort((a, b) => b.value - a.value);
 
-<!-- Chart.js CDN - this script tag can be omitted if you already load Chart.js in the host page -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        const sortedCategories = sortedData.map(d => d.category);
+        const sortedValues = sortedData.map(d => d.value);
 
-<script>
-(function () {
-  // Data (from your request)
-  const labels = ['Devices Online', 'Devices Offline', 'Devices not monitored'];
-  const values = [945, 18, 10];
+        // Calculate cumulative percentages
+        const total = sortedValues.reduce((sum, val) => sum + val, 0);
+        const cumulativePercent = [];
+        sortedValues.reduce((acc, val) => {
+            const cum = acc + val;
+            cumulativePercent.push((cum / total * 100).toFixed(2));
+            return cum;
+        }, 0);
 
-  // Accessible, friendly palette
-  const bgColors = ['#16a34a', '#dc2626', '#6b7280']; // green, red, gray
-  const borderColors = bgColors.map(c => c);
+        const data = {
+            labels: sortedCategories,
+            datasets: [
+                {
+                    type: 'bar',
+                    label: 'Incident Count (%)',
+                    data: sortedValues,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    type: 'line',
+                    label: 'Cumulative %',
+                    data: cumulativePercent,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    yAxisID: 'percentage',
+                    tension: 0.2,
+                    fill: false,
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    pointBorderColor: '#fff',
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }
+            ]
+        };
 
-  // Ensure we don't re-create the chart if this snippet is executed multiple times
-  const ctx = document.getElementById('devices-pie-chart');
-  if (!ctx) return; // canvas removed or not present
-
-  // If a previous chart exists on the window namespace, destroy it to avoid dupes
-  if (window._devicesPieChart instanceof Chart) {
-    try { window._devicesPieChart.destroy(); } catch (e) { /* ignore */ }
-  }
-
-  // Create the pie chart
-  window._devicesPieChart = new Chart(ctx.getContext('2d'), {
-    type: 'pie',
-    data: {
-      labels: labels,
-      datasets: [{
-        data: values,
-        backgroundColor: bgColors,
-        borderColor: borderColors,
-        borderWidth: 1,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false // we render a separate accessible legend below
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              const label = context.label || '';
-              const value = context.parsed || 0;
-              const total = context.chart._metasets ? context.chart._metasets[context.datasetIndex].total : (values.reduce((a,b)=>a+b,0));
-              const pct = total ? (value / total * 100).toFixed(1) + '%' : '';
-              return label + ': ' + value + (pct ? ' (' + pct + ')' : '');
+        const options = {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Incident Count (%)'
+                    }
+                },
+                percentage: {
+                    type: 'linear',
+                    position: 'right',
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Cumulative %'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: false
+                },
+                legend: {
+                    position: 'top'
+                }
             }
-          }
-        }
-      }
-    }
-  });
+        };
 
-  // Build a small textual legend (accessible)
-  (function renderLegend() {
-    const container = document.getElementById('devices-pie-legend');
-    if (!container) return;
-    const total = values.reduce((a,b) => a + b, 0);
-    const items = labels.map((label, i) => {
-      const v = values[i];
-      const pct = total ? Math.round((v / total) * 10) / 10 : 0; // one decimal
-      return `
-        <div style="display:inline-flex;align-items:center;margin:4px 8px;">
-          <span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:${bgColors[i]};margin-right:8px;flex:0 0 12px;" aria-hidden="true"></span>
-          <span style="white-space:nowrap">${label}: <strong>${v}</strong> (${pct}%)</span>
-        </div>`;
-    }).join('');
-
-    container.innerHTML = `<div aria-hidden="true" style="margin-bottom:6px;">Total: <strong>${total}</strong></div>${items}`;
-  })();
-})();
-</script>
+        new Chart(ctx, {
+            data: data,
+            options: options
+        });
+    </script>
 
 <h2>Health Incidents History</h2>
 					  
