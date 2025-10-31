@@ -6690,24 +6690,30 @@ question_mark</span></span
                         max: 24,
                         title: {
                             display: true,
-                            text: 'Hours'
+                            text: 'Hours',
+							color: 'white'
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Date'
+                            text: 'Date',
+							color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         display: true,
-                        position: 'top'
+                        position: 'top',
+						labels: {
+                            color: 'white' // Legend text color
+                        }
                     },
                     title: {
                         display: true,
-                        text: 'Total Online Hours Over Last 7 Days'
+                        text: 'Total Online Hours Over Last 7 Days',
+						color: 'white' // Title color
                     }
                 }
             }
