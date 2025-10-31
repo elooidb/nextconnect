@@ -6647,25 +6647,69 @@ question_mark</span></span
 })();
 </script>
                       
-					  <div class="elooibox red">
-                        <h3>1 Priority Health incidents under investigation</h3>
-                        <p>total 1MW at risk</p>
-                      </div>
+					  <div id="chart-container">
+        <canvas id="onlineHoursChart"></canvas>
+    </div>
 
-                      <div class="elooibox orange">
-                        <h3>1 Medium Health incidents under investigation</h3>
-                        <p>total 500kVA at risk</p>
-                      </div>
+    <script>
+        const ctx = document.getElementById('onlineHoursChart').getContext('2d');
 
-                      <div class="elooibox green">
-                        <h3>0 Planned Service Requests</h3>
-                        <p>total 0kW at risk</p>
-                      </div>
+        const dataValues = [24, 24, 24, 24, 20, 20, 20];
+        const barColors = dataValues.map(value => value === 24 ? 'rgba(54, 162, 235, 0.7)' : 'rgba(255, 159, 64, 0.7)');
+        const borderColors = dataValues.map(value => value === 24 ? 'rgba(54, 162, 235, 1)' : 'rgba(255, 159, 64, 1)');
 
-                      <div class="elooibox gray">
-                        <h3>4 Closed Health Service Requests</h3>
-                        <p>total 25kW risk avoided</p>
-                      </div>
+        const dateLabels = [
+            '2025-09-25',
+            '2025-09-26',
+            '2025-09-27',
+            '2025-09-28',
+            '2025-09-29',
+            '2025-09-30',
+            '2025-10-01'
+        ];
+
+        const onlineHoursChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: dateLabels,
+                datasets: [{
+                    label: 'Total Online Hours',
+                    data: dataValues,
+                    backgroundColor: barColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 24,
+                        title: {
+                            display: true,
+                            text: 'Hours'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Total Online Hours Over Last 7 Days'
+                    }
+                }
+            }
+        });
+    </script>
 
                     </div>
 
