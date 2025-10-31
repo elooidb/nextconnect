@@ -6880,6 +6880,111 @@ question_mark</span></span
 
 <!--ELOOOI TABLE-->
 
+<h2>Health Incident Distribution</h2>
+    <canvas id="paretoChart"></canvas>
+
+    <script>
+        const ctx = document.getElementById('paretoChart').getContext('2d');
+
+        // Data
+        const categories = ["Compressor Short Cycling", "Fan Malfunction", "Suboptimal Setpoints", "Clogged Filter"];
+        const values = [70, 40, 30, 10];
+
+        // Sort descending for Pareto
+        const sortedData = categories.map((cat, i) => ({category: cat, value: values[i]}))
+                                     .sort((a, b) => b.value - a.value);
+
+        const sortedCategories = sortedData.map(d => d.category);
+        const sortedValues = sortedData.map(d => d.value);
+
+        // Calculate cumulative percentages
+        const total = sortedValues.reduce((sum, val) => sum + val, 0);
+        const cumulativePercent = [];
+        sortedValues.reduce((acc, val) => {
+            const cum = acc + val;
+            cumulativePercent.push((cum / total * 100).toFixed(2));
+            return cum;
+        }, 0);
+
+        const data = {
+            labels: sortedCategories,
+            datasets: [
+                {
+                    type: 'bar',
+                    label: 'Incident Count (%)',
+                    data: sortedValues,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    type: 'line',
+                    label: 'Cumulative %',
+                    data: cumulativePercent,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    yAxisID: 'percentage',
+                    tension: 0.2,
+                    fill: false,
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    pointBorderColor: '#fff',
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }
+            ]
+        };
+
+        const options = {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Incident Count (%)'
+                    }
+                },
+                percentage: {
+                    type: 'linear',
+                    position: 'right',
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Cumulative %'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Health Incident Distribution',
+                    font: {
+                        size: 20
+                    }
+                },
+                legend: {
+                    position: 'top'
+                }
+            }
+        };
+
+        new Chart(ctx, {
+            data: data,
+            options: options
+        });
+    </script>
+
+<h2>Health Incidents History/h2>
+					  
 <div class="table-container">
 <table
                       _ngcontent-ng-c560033025=""
