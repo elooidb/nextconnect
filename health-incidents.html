@@ -7001,327 +7001,707 @@ question_mark</span></span
         });
     </script>
 
-<h2>Health Incidents History</h2>
-					  
-<div class="table-container">
-<table
-                      _ngcontent-ng-c560033025=""
-                      mat-table=""
-                      matsort=""
-                      class="mat-mdc-table mdc-data-table__table cdk-table mat-sort full-width"
-                      role="table"
-                      ng-reflect-data-source="[object Object]"
-                      ng-reflect-active="name"
-                      ng-reflect-direction="asc"
-                      ng-reflect-ng-class="[object Object]"
-                    >
 
-                    <thead role="rowgroup">
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-header-row=""
-                          class="mat-mdc-header-row mdc-data-table__header-row cdk-header-row"
-                        >
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-select mat-column-select"
-                          >Id
-						  </th>
+<!-- Redesigned Health Incidents Table -->
+<style>
+    .incidents-container {
+        margin-top: 40px;
+    }
 
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Date
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Site
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Status
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Device
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Model
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Capacity
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Health Incident Name
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Severity
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Description
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Impact
-                          </th>
-                          <th
-                            _ngcontent-ng-c560033025=""
-                            role="columnheader"
-                            mat-header-cell=""
-                            class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-isEnabled mat-column-isEnabled"
-                          >
-                            Recommendation
-                          </th>
-                            
-                          </th>
-                        </tr>
-                    </thead>
+    .incidents-header {
+        margin-bottom: 32px;
+    }
 
+    .incidents-header h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #e5e7eb;
+        margin-bottom: 16px;
+    }
 
-                    <tbody role="rowgroup" class="mdc-data-table__content">
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-row=""
-                          class="mat-mdc-row mdc-data-table__row cdk-row"
-                        >
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Health_Incident_1
-                          </td>
+    .header-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > 2025-10-05
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > DFW-III-2-5-AC-23
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > SR Created (<a href="service-requests.html">SR-1</a>)
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > EQ-34-FC-RD
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > DP400
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > 400kW
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Compressor Short Cycling
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > High
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Compressor short cycling causing extra wear and tear
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Asset aging 4x the normal rate increasing the risk of failure
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Adjusted load distribution on unit zone to avoid low loads that were causing the short cycling. No downtime required
-                          </td>
-                        </tr>
+    .stats-summary {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
 
-                        <tr
-                          _ngcontent-ng-c560033025=""
-                          role="row"
-                          mat-row=""
-                          class="mat-mdc-row mdc-data-table__row cdk-row"
-                        >
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > Health_Incident_2
-                          </td>
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
 
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > 2025-09-01
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select"
-                            role="cell"
-                          > DFW-III-2-5-AC-23
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Closed
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > AC-23-WD-45
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > DP400
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > 400kW
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Compressor Short Cycling
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > High
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Compressor short cycling causing extra wear and tear
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Asset aging 4x the normal rate increasing the risk of failure
-                          </td>
-                          <td
-                            _ngcontent-ng-c560033025=""
-                            mat-cell=""
-                            class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-select mat-column-select "
-                            role="cell"
-                          > Adjusted load distribution on unit zone to avoid low loads that were causing the short cycling. No downtime required
-                          </td>
-                        </tr>
-                    </tbody>
+    .stat-badge {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
 
+    .stat-badge.open { background: #ef4444; }
+    .stat-badge.closed { background: #22c55e; }
+    .stat-badge.high { background: #f59e0b; }
 
-                  </table>
+    .stat-label {
+        font-size: 13px;
+        color: #6b7280;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+
+    .last-refreshed {
+        font-size: 13px;
+        color: #6b7280;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .last-refreshed .material-symbols-outlined {
+        font-size: 16px;
+    }
+
+    .table-wrapper {
+        background: #1a1a1a;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2);
+        overflow: hidden;
+        border: 1px solid #2d2d2d;
+    }
+
+    .table-controls {
+        padding: 20px 24px;
+        border-bottom: 1px solid #2d2d2d;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        background: #1f1f1f;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #2d2d2d;
+        border: 1px solid #3d3d3d;
+        border-radius: 8px;
+        padding: 8px 14px;
+        min-width: 300px;
+    }
+
+    .search-box .material-symbols-outlined {
+        font-size: 20px;
+        color: #9ca3af;
+    }
+
+    .search-box input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 14px;
+        width: 100%;
+        color: #e5e7eb;
+    }
+
+    .search-box input::placeholder {
+        color: #6b7280;
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        border: 1px solid #3d3d3d;
+        background: #2d2d2d;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #9ca3af;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .filter-btn:hover {
+        background: #3d3d3d;
+        border-color: #4d4d4d;
+        color: #e5e7eb;
+    }
+
+    .filter-btn.active {
+        background: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+    }
+
+    .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        background: #1a1a1a;
+    }
+
+    .incidents-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .incident-row {
+        border-bottom: 1px solid #2d2d2d;
+        transition: background 0.15s;
+        cursor: pointer;
+        background: #1a1a1a;
+    }
+
+    .incident-row:hover {
+        background: #252525;
+    }
+
+    .incident-row:last-child {
+        border-bottom: none;
+    }
+
+    .main-info {
+        display: grid;
+        grid-template-columns: 180px 120px 180px 120px 140px auto;
+        gap: 20px;
+        align-items: start;
+        padding: 20px;
+    }
+
+    .cell-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .cell-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .cell-value {
+        font-size: 14px;
+        color: #e5e7eb;
+        font-weight: 500;
+    }
+
+    .cell-subvalue {
+        font-size: 13px;
+        color: #9ca3af;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+
+    .status-badge.open {
+        background: #7f1d1d;
+        color: #fca5a5;
+        border: 1px solid #991b1b;
+    }
+
+    .status-badge.sr-created {
+        background: #78350f;
+        color: #fcd34d;
+        border: 1px solid #92400e;
+    }
+
+    .status-badge.closed {
+        background: #14532d;
+        color: #86efac;
+        border: 1px solid #166534;
+    }
+
+    .status-badge .material-symbols-outlined {
+        font-size: 16px;
+    }
+
+    .severity-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .severity-badge.high {
+        background: #78350f;
+        color: #fcd34d;
+        border: 1px solid #92400e;
+    }
+
+    .details-row {
+        display: none;
+        background: #1f1f1f;
+    }
+
+    .details-row.expanded {
+        display: table-row;
+    }
+
+    .details-content {
+        padding: 24px;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .detail-section {
+        background: #2d2d2d;
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid #3d3d3d;
+    }
+
+    .detail-section h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .detail-section .material-symbols-outlined {
+        font-size: 18px;
+        color: #9ca3af;
+    }
+
+    .detail-section p {
+        font-size: 14px;
+        color: #d1d5db;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+
+    .detail-section p strong {
+        color: #e5e7eb;
+    }
+
+    .detail-section a {
+        color: #60a5fa;
+    }
+
+    .detail-section a:hover {
+        color: #93c5fd;
+    }
+
+    .expand-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: #2d2d2d;
+        transition: all 0.2s;
+        border: 1px solid #3d3d3d;
+    }
+
+    .expand-icon .material-symbols-outlined {
+        font-size: 20px;
+        color: #9ca3af;
+        transition: transform 0.2s;
+    }
+
+    .incident-row:hover .expand-icon {
+        background: #3d3d3d;
+        border-color: #4d4d4d;
+    }
+
+    .incident-row.expanded .expand-icon .material-symbols-outlined {
+        transform: rotate(180deg);
+        color: #e5e7eb;
+    }
+
+    .incident-id {
+        color: #60a5fa;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .incident-id:hover {
+        text-decoration: underline;
+        color: #93c5fd;
+    }
+
+    .incident-id .material-symbols-outlined {
+        font-size: 16px;
+    }
+
+    @media (max-width: 1024px) {
+        .main-info {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .stats-summary {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .stat-item {
+            width: 100%;
+        }
+
+        .table-controls {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .search-box {
+            min-width: 100%;
+        }
+
+        .main-info {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="incidents-container">
+    <div class="incidents-header">
+        <h2>Health Incidents History</h2>
+        <div class="header-info">
+            <div class="stats-summary">
+                <div class="stat-item">
+                    <span class="stat-badge open"></span>
+                    <div>
+                        <div class="stat-label">Open</div>
+                        <div class="stat-value">1</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-badge closed"></span>
+                    <div>
+                        <div class="stat-label">Closed</div>
+                        <div class="stat-value">1</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-badge high"></span>
+                    <div>
+                        <div class="stat-label">High Priority</div>
+                        <div class="stat-value">2</div>
+                    </div>
+                </div>
+            </div>
+            <div class="last-refreshed">
+                <span class="material-symbols-outlined">schedule</span>
+                Last Refreshed: 10-27-2025 11:29:44
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-controls">
+            <div class="search-box">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" placeholder="Search incidents..." id="incidentSearch">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="material-symbols-outlined">filter_list</span>
+                    All
+                </button>
+                <button class="filter-btn" data-filter="open">
+                    <span class="material-symbols-outlined">error</span>
+                    Open
+                </button>
+                <button class="filter-btn" data-filter="closed">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    Closed
+                </button>
+                <button class="filter-btn" data-filter="high">
+                    <span class="material-symbols-outlined">priority_high</span>
+                    High Priority
+                </button>
+            </div>
+        </div>
+
+        <div class="table-scroll">
+            <table class="incidents-table">
+                <tbody>
+                    <!-- Incident 1 -->
+                    <tr class="incident-row" data-status="open" data-severity="high" onclick="toggleIncidentDetails(this)">
+                        <td>
+                            <div class="main-info">
+                                <div class="cell-content">
+                                    <span class="cell-label">Incident ID</span>
+                                    <a href="#" class="incident-id" onclick="event.stopPropagation()">
+                                        Health_Incident_1
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                    </a>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Date</span>
+                                    <span class="cell-value">2025-10-05</span>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Site / Asset</span>
+                                    <span class="cell-value">DFW-III-2-5-AC-23</span>
+                                    <span class="cell-subvalue">EQ-34-FC-RD</span>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Status</span>
+                                    <span class="status-badge sr-created">
+                                        <span class="material-symbols-outlined">build</span>
+                                        SR Created
+                                    </span>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Severity</span>
+                                    <span class="severity-badge high">High</span>
+                                </div>
+                                <div class="cell-content" style="justify-content: flex-end; align-items: flex-end;">
+                                    <div class="expand-icon">
+                                        <span class="material-symbols-outlined">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="details-row">
+                        <td>
+                            <div class="details-content">
+                                <div class="details-grid">
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">inventory_2</span>
+                                            Equipment Details
+                                        </h4>
+                                        <p><strong>Model:</strong> DP400</p>
+                                        <p><strong>Capacity:</strong> 400kW</p>
+                                        <p><strong>Device:</strong> EQ-34-FC-RD</p>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">warning</span>
+                                            Issue Description
+                                        </h4>
+                                        <p><strong>Type:</strong> Compressor Short Cycling</p>
+                                        <p>Compressor short cycling causing extra wear and tear</p>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">priority_high</span>
+                                            Impact Assessment
+                                        </h4>
+                                        <p>Asset aging 4x the normal rate increasing the risk of failure</p>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">build</span>
+                                            Recommendation / Resolution
+                                        </h4>
+                                        <p>Adjusted load distribution on unit zone to avoid low loads that were causing the short cycling. No downtime required</p>
+                                        <p><strong>Service Request:</strong> <a href="service-requests.html">SR-1</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Incident 2 -->
+                    <tr class="incident-row" data-status="closed" data-severity="high" onclick="toggleIncidentDetails(this)">
+                        <td>
+                            <div class="main-info">
+                                <div class="cell-content">
+                                    <span class="cell-label">Incident ID</span>
+                                    <a href="#" class="incident-id" onclick="event.stopPropagation()">
+                                        Health_Incident_2
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                    </a>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Date</span>
+                                    <span class="cell-value">2025-09-01</span>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Site / Asset</span>
+                                    <span class="cell-value">DFW-III-2-5-AC-23</span>
+                                    <span class="cell-subvalue">AC-23-WD-45</span>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Status</span>
+                                    <span class="status-badge closed">
+                                        <span class="material-symbols-outlined">check_circle</span>
+                                        Closed
+                                    </span>
+                                </div>
+                                <div class="cell-content">
+                                    <span class="cell-label">Severity</span>
+                                    <span class="severity-badge high">High</span>
+                                </div>
+                                <div class="cell-content" style="justify-content: flex-end; align-items: flex-end;">
+                                    <div class="expand-icon">
+                                        <span class="material-symbols-outlined">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="details-row">
+                        <td>
+                            <div class="details-content">
+                                <div class="details-grid">
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">inventory_2</span>
+                                            Equipment Details
+                                        </h4>
+                                        <p><strong>Model:</strong> DP400</p>
+                                        <p><strong>Capacity:</strong> 400kW</p>
+                                        <p><strong>Device:</strong> AC-23-WD-45</p>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">warning</span>
+                                            Issue Description
+                                        </h4>
+                                        <p><strong>Type:</strong> Compressor Short Cycling</p>
+                                        <p>Compressor short cycling causing extra wear and tear</p>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">priority_high</span>
+                                            Impact Assessment
+                                        </h4>
+                                        <p>Asset aging 4x the normal rate increasing the risk of failure</p>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">build</span>
+                                            Recommendation / Resolution
+                                        </h4>
+                                        <p>Adjusted load distribution on unit zone to avoid low loads that were causing the short cycling. No downtime required</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-                    
 
-                  
+<script>
+    function toggleIncidentDetails(row) {
+        const detailsRow = row.nextElementSibling;
+        const isExpanded = row.classList.contains('expanded');
+        
+        // Close all other expanded rows
+        document.querySelectorAll('.incident-row.expanded').forEach(r => {
+            if (r !== row) {
+                r.classList.remove('expanded');
+                r.nextElementSibling.classList.remove('expanded');
+            }
+        });
+        
+        // Toggle current row
+        if (isExpanded) {
+            row.classList.remove('expanded');
+            detailsRow.classList.remove('expanded');
+        } else {
+            row.classList.add('expanded');
+            detailsRow.classList.add('expanded');
+        }
+    }
 
+    // Filter buttons functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            document.querySelectorAll('.incident-row').forEach(row => {
+                const status = row.dataset.status;
+                const severity = row.dataset.severity;
+                
+                if (filter === 'all') {
+                    row.style.display = '';
+                } else if (filter === 'open' && status === 'open') {
+                    row.style.display = '';
+                } else if (filter === 'closed' && status === 'closed') {
+                    row.style.display = '';
+                } else if (filter === 'high' && severity === 'high') {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                    row.nextElementSibling.style.display = 'none';
+                }
+            });
+        });
+    });
 
- <!--ELOOOI TABLE-->
+    // Search functionality
+    const searchInput = document.getElementById('incidentSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.incident-row').forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+                if (row.style.display === 'none') {
+                    row.nextElementSibling.style.display = 'none';
+                }
+            });
+        });
+    }
+</script>
 
                     
                     
