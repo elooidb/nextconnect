@@ -6,6 +6,34 @@
 * Copyright 2011-2025 The Bootstrap Authors
 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 */
+/* set the global Material toolbar font variable (cleaner) */
+:root {
+  --mat-toolbar-title-text-font: "Your Preferred Font", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* fallback: apply toolbar font across page content (keeps your original rule) */
+.container,
+.container *,
+.page-header-container,
+.page-header-container *,
+.mat-mdc-form-field,
+.mat-mdc-form-field *,
+.mat-mdc-button .mdc-button__label,
+.mat-mdc-select,
+.mat-mdc-select *,
+.mat-mdc-list-item,
+.mdc-list-item__primary-text,
+.mat-mdc-table,
+.mat-mdc-table *,
+.elooibox,
+.gauge-title,
+.gauge-value,
+label,
+mat-label,
+.name-label,
+.context-link {
+  font-family: var(--mat-toolbar-title-text-font, var(--mat-sys-title-large-font)) !important;
+}
 :root,
 [data-bs-theme=light] {
   --bs-blue:#0d6efd;
@@ -32899,6 +32927,28 @@ tr.mat-row td.mat-cell {
   padding: 0 10px;
 }
 tr.mat-mdc-header-row th.mat-mdc-header-cell.mat-column-select,
+/* Make datatable header labels slightly bigger and bold */
+.mat-mdc-header-cell,
+mat-header-cell,
+.mat-mdc-table th,
+.mdc-data-table__header-cell,
+th.mat-mdc-header-cell {
+  font-size: 0.95rem !important;   /* slightly larger than default */
+  font-weight: 600 !important;     /* bold */
+  line-height: 1.2 !important;
+  vertical-align: middle !important;
+  text-align: left !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ensure header content is vertically centered with cell content */
+.mat-mdc-header-cell > *,
+.mat-mdc-table th > * {
+  display: inline-flex;
+  align-items: center;
+}
 tr.mat-row td.mat-cell.mat-column-select {
   padding-left: 24px;
 }
