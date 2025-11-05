@@ -6972,6 +6972,7 @@ question_mark</span></span
 
         const options = {
             responsive: true,
+        	maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -7000,13 +7001,12 @@ question_mark</span></span
                 }
             },
             plugins: {
-                title: {
-                    display: false
-                },
-                legend: {
-                    position: 'top'
-                }
-            }
+            	legend: { position: 'top' },
+            	title: {
+                	display: true,
+                	text: 'Health Incident Pareto'
+            	}
+        	}
         };
 
         new Chart(ctx, {
