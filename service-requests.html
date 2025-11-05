@@ -6551,13 +6551,24 @@ question_mark</span></span
 
 
                     <!-- Container for the chart -->
-<div style="width: 400px; max-width: 100%; height: 300px; margin: 20px auto;">
-    <canvas id="severityChart"></canvas>
+<div style="display: flex; justify-content: space-between; gap: 20px; max-width: 100%; margin: 20px auto;">
+    <!-- Severity Chart -->
+    <div style="width: 45%; height: 300px;">
+        <canvas id="severityChart"></canvas>
+    </div>
+
+    <!-- Service Request Chart -->
+    <div style="width: 45%; height: 300px;">
+        <canvas id="serviceRequestChart"></canvas>
+    </div>
 </div>
 <!-- Add Chart.js if not already included in your page -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Data Labels Plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 					  
 <script>
+/* ============= Severity Chart ============= */
 const ctx = document.getElementById('severityChart').getContext('2d');
 
 new Chart(ctx, {
@@ -6601,6 +6612,58 @@ new Chart(ctx, {
                     display: true,
                     text: 'Percentage (%) closed on time'
                 }
+            }
+        }
+    }
+});
+
+/* ============= Service Request Chart ============= */
+const ctx2 = document.getElementById('serviceRequestChart').getContext('2d');
+
+/* Month labels for the full year */
+const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/* Data per type (0 everywhere except March and September) */
+const healthData =      [0, 0, 10, 0, 0, 0, 0, 0, 5,  0, 0, 0];
+const batteryData =     [0, 0, 1,  0, 0, 0, 0, 0, 2,  0, 0, 0];
+const maintenanceData = [0, 0, 4,  0, 0, 0, 0, 0, 1,  0, 0, 0];
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: monthLabels,
+        datasets: [
+            {
+                label: '26-Health',
+                data: healthData,
+                backgroundColor: '#4A90E2'
+            },
+            {
+                label: '12-Battery Replacement',
+                data: batteryData,
+                backgroundColor: '#7ED957'
+            },
+            {
+                label: '10-General Maintenance',
+                data: maintenanceData,
+                backgroundColor: '#F5A623'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            title: {
+                display: true,
+                text: 'Current Year Service Request Count by Type'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Count' }
             }
         }
     }
