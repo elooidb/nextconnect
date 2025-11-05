@@ -6551,7 +6551,7 @@ question_mark</span></span
 
 
                     <!-- Container for the chart -->
-<div style="width: 400px; max-width: 100%; margin: 20px auto;">
+<div style="width: 400px; max-width: 100%; height: 300px; margin: 20px auto;">
     <canvas id="severityChart"></canvas>
 </div>
 <!-- Add Chart.js if not already included in your page -->
@@ -6577,6 +6577,23 @@ new Chart(ctx, {
     options: {
         responsive: true,
         maintainAspectRatio: false,
+		plugins: {
+            legend: {
+                display: false // Ensure no legend appears
+            }
+        },
+		datalabels: {
+                color: 'white',
+                anchor: 'center',
+                align: 'center',
+                font: {
+                    weight: 'bold',
+                    size: 14
+                },
+                formatter: function(value) {
+                    return value + '%'; // Show percentage inside the bar
+                }
+            },
         scales: {
             y: {
                 beginAtZero: true,
