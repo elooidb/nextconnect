@@ -6901,11 +6901,25 @@ question_mark</span></span
 <!--ELOOOI TABLE-->
 
 <h2>Health Incident Distribution</h2>
-<div class="chart-container">
+<div style="display: flex; justify-content: space-between; gap: 20px; max-width: 100%; margin: 20px auto;">
+    <!-- Pareto Chart -->
+    <div style="width: 45%; height: 300px;">
         <canvas id="paretoChart"></canvas>
     </div>
+	<!-- Incidents Chart -->
+    <div style="width: 45%; height: 300px;">
+        <canvas id="IncidentsChart"></canvas>
+    </div>
 
-    <script>
+</div>
+					  
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Data Labels Plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+					  
+<script>
+	/* ============= Pareto Chart ============= */
         const ctx = document.getElementById('paretoChart').getContext('2d');
 
         // Data
@@ -6999,7 +7013,59 @@ question_mark</span></span
             data: data,
             options: options
         });
-    </script>
+
+	/* ============= Incidents Chart ============= */
+	const ctx2 = document.getElementById('serviceRequestChart').getContext('2d');
+
+/* Month labels for the full year */
+const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/* Data per type (0 everywhere except March and September) */
+const healthData =      [0, 0, 10, 0, 0, 0, 0, 0, 5,  0, 0, 0];
+const batteryData =     [0, 0, 1,  0, 0, 0, 0, 0, 2,  0, 0, 0];
+const maintenanceData = [0, 0, 4,  0, 0, 0, 0, 0, 1,  0, 0, 0];
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: monthLabels,
+        datasets: [
+            {
+                label: 'Compressor Short Cycling',
+                data: healthData,
+                backgroundColor: '#4A90E2'
+            },
+            {
+                label: 'Fan Malfunction',
+                data: batteryData,
+                backgroundColor: '#7ED957'
+            },
+            {
+                label: 'Clogged Filter',
+                data: maintenanceData,
+                backgroundColor: '#F5A623'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            title: {
+                display: true,
+                text: 'Current Year Health Incident Count by Type'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Count' }
+            }
+        }
+    }
+});
+</script>
 
 
 <!-- Redesigned Health Incidents Table -->
