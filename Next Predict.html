@@ -5445,74 +5445,589 @@ question_mark</span></span
                               ></gridster-preview></gridster
                             >
 <!-- ELOOOI TABLE START -->
-<div id="eloooi-table-container" style="
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1000;
-">
-  <div style="
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    padding: 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-  ">
-    <h2 style="
-      margin: 0 0 20px 0;
-      font-size: 24px;
-      font-weight: 500;
-      color: #1976d2;
-      font-family: Roboto, sans-serif;
-    ">Site Information Table</h2>
-    
-    <div style="overflow-x: auto;">
-      <table style="
+
+<!-- Redesigned Sites Table - Dark Theme -->
+<style>
+    .sites-v3-container {
+        background: #0f0f0f;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .sites-v3-header {
+        margin-bottom: 32px;
+    }
+
+    .sites-v3-header h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #e5e7eb;
+        margin-bottom: 16px;
+        font-family: Roboto, sans-serif;
+    }
+
+    .sites-v3-header-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .sites-v3-stats-summary {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .sites-v3-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: #1f1f1f;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        border: 1px solid #2d2d2d;
+    }
+
+    .sites-v3-stat-badge {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .sites-v3-stat-badge.total { background: #3b82f6; }
+    .sites-v3-stat-badge.open-sr { background: #ef4444; }
+
+    .sites-v3-stat-label {
+        font-size: 13px;
+        color: #9ca3af;
+        font-weight: 500;
+    }
+
+    .sites-v3-stat-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #e5e7eb;
+    }
+
+    .sites-v3-table-wrapper {
+        background: #1a1a1a;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2);
+        overflow: hidden;
+        border: 1px solid #2d2d2d;
+    }
+
+    .sites-v3-table-controls {
+        padding: 20px 24px;
+        border-bottom: 1px solid #2d2d2d;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        background: #1f1f1f;
+    }
+
+    .sites-v3-search-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #2d2d2d;
+        border: 1px solid #3d3d3d;
+        border-radius: 8px;
+        padding: 8px 14px;
+        min-width: 300px;
+    }
+
+    .sites-v3-search-box .material-symbols-outlined {
+        font-size: 20px;
+        color: #9ca3af;
+    }
+
+    .sites-v3-search-box input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 14px;
+        width: 100%;
+        color: #e5e7eb;
+        font-family: Roboto, sans-serif;
+    }
+
+    .sites-v3-search-box input::placeholder {
+        color: #6b7280;
+    }
+
+    .sites-v3-table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        background: #1a1a1a;
+    }
+
+    .sites-v3-table {
         width: 100%;
         border-collapse: collapse;
+    }
+
+    .site-v3-row {
+        border-bottom: 1px solid #2d2d2d;
+        transition: background 0.15s;
+        cursor: pointer;
+        background: #1a1a1a;
+    }
+
+    .site-v3-row:hover {
+        background: #252525;
+    }
+
+    .site-v3-main-info {
+        display: grid;
+        grid-template-columns: 80px 200px 150px 180px auto;
+        gap: 20px;
+        align-items: start;
+        padding: 20px;
+    }
+
+    .site-v3-cell-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .site-v3-cell-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-cell-value {
         font-size: 14px;
-      ">
-        <thead>
-          <tr style="background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);">
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Id</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Address</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Customer Site Ref</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Organization Name</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Products</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Open SRs</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Service Contracts</th>
-            <th style="padding: 16px 12px; text-align: left; font-weight: 600; color: #424242; border-bottom: 2px solid #1976d2; white-space: nowrap;">Warranties</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid #e0e0e0; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='white'">
-            <td style="padding: 14px 12px; color: #424242;">1</td>
-            <td style="padding: 14px 12px; color: #424242; font-weight: 500;">DFW-III-2-5-AC-23</td>
-            <td style="padding: 14px 12px; color: #616161;">Address 1</td>
-            <td style="padding: 14px 12px; color: #616161;">Ref 1</td>
-            <td style="padding: 14px 12px; color: #616161;">Org 1</td>
-            <td style="padding: 14px 12px; background-color: #ffebee; color: #c62828; font-weight: 600; text-align: center; border-radius: 4px;">1</td>
-            <td style="padding: 14px 12px; color: #616161; text-align: center;">10</td>
-            <td style="padding: 14px 12px; color: #616161; text-align: center;">5</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e0e0e0; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='white'">
-            <td style="padding: 14px 12px; color: #424242;">2</td>
-            <td style="padding: 14px 12px; color: #424242; font-weight: 500;">DFW-III-2-5-AC-24</td>
-            <td style="padding: 14px 12px; color: #616161;">Address 2</td>
-            <td style="padding: 14px 12px; color: #616161;">Ref 2</td>
-            <td style="padding: 14px 12px; color: #616161;">Org 2</td>
-            <td style="padding: 14px 12px; background-color: #e8f5e9; color: #2e7d32; font-weight: 600; text-align: center; border-radius: 4px;">0</td>
-            <td style="padding: 14px 12px; color: #616161; text-align: center;">20</td>
-            <td style="padding: 14px 12px; color: #616161; text-align: center;">5</td>
-          </tr>
-        </tbody>
-      </table>
+        color: #e5e7eb;
+        font-weight: 500;
+        font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-cell-subvalue {
+        font-size: 13px;
+        color: #9ca3af;
+        font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-count-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+        padding: 0 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-count-badge.products {
+        background: #1e3a8a;
+        color: #93c5fd;
+        border: 1px solid #1e40af;
+    }
+
+    .site-v3-count-badge.open-sr {
+        background: #7f1d1d;
+        color: #fca5a5;
+        border: 1px solid #991b1b;
+    }
+
+    .site-v3-count-badge.no-sr {
+        background: #14532d;
+        color: #86efac;
+        border: 1px solid #166534;
+    }
+
+    .site-v3-count-badge.contracts {
+        background: #78350f;
+        color: #fcd34d;
+        border: 1px solid #92400e;
+    }
+
+    .site-v3-details-row {
+        display: none;
+        background: #1f1f1f;
+    }
+
+    .site-v3-details-row.expanded {
+        display: table-row;
+    }
+
+    .site-v3-details-content {
+        padding: 24px;
+    }
+
+    .site-v3-details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .site-v3-detail-section {
+        background: #2d2d2d;
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid #3d3d3d;
+    }
+
+    .site-v3-detail-section h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-detail-section .material-symbols-outlined {
+        font-size: 18px;
+        color: #9ca3af;
+    }
+
+    .site-v3-detail-section p {
+        font-size: 14px;
+        color: #d1d5db;
+        line-height: 1.6;
+        margin-bottom: 8px;
+        font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-detail-section p strong {
+        color: #e5e7eb;
+    }
+
+    .site-v3-expand-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: #2d2d2d;
+        transition: all 0.2s;
+        border: 1px solid #3d3d3d;
+    }
+
+    .site-v3-expand-icon .material-symbols-outlined {
+        font-size: 20px;
+        color: #9ca3af;
+        transition: transform 0.2s;
+    }
+
+    .site-v3-row:hover .site-v3-expand-icon {
+        background: #3d3d3d;
+        border-color: #4d4d4d;
+    }
+
+    .site-v3-row.expanded .site-v3-expand-icon .material-symbols-outlined {
+        transform: rotate(180deg);
+        color: #e5e7eb;
+    }
+
+    .site-v3-id-link {
+        color: #60a5fa;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-family: Roboto, sans-serif;
+    }
+
+    .site-v3-id-link:hover {
+        text-decoration: underline;
+        color: #93c5fd;
+    }
+
+    .site-v3-id-link .material-symbols-outlined {
+        font-size: 16px;
+    }
+
+    @media (max-width: 1024px) {
+        .site-v3-main-info {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .site-v3-details-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sites-v3-stats-summary {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .sites-v3-stat-item {
+            width: 100%;
+        }
+
+        .sites-v3-table-controls {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .sites-v3-search-box {
+            min-width: 100%;
+        }
+
+        .site-v3-main-info {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="sites-v3-container">
+    <div class="sites-v3-header">
+        <h2>Site Information Table</h2>
+        <div class="sites-v3-header-info">
+            <div class="sites-v3-stats-summary">
+                <div class="sites-v3-stat-item">
+                    <span class="sites-v3-stat-badge total"></span>
+                    <div>
+                        <div class="sites-v3-stat-label">Total Sites</div>
+                        <div class="sites-v3-stat-value">2</div>
+                    </div>
+                </div>
+                <div class="sites-v3-stat-item">
+                    <span class="sites-v3-stat-badge open-sr"></span>
+                    <div>
+                        <div class="sites-v3-stat-label">Open SRs</div>
+                        <div class="sites-v3-stat-value">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="sites-v3-table-wrapper">
+        <div class="sites-v3-table-controls">
+            <div class="sites-v3-search-box">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" placeholder="Search sites..." id="siteV3Search">
+            </div>
+        </div>
+
+        <div class="sites-v3-table-scroll">
+            <table class="sites-v3-table">
+                <tbody>
+                    <!-- Site 1 -->
+                    <tr class="site-v3-row" onclick="toggleSiteV3Details(this)">
+                        <td>
+                            <div class="site-v3-main-info">
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Site ID</span>
+                                    <a href="#" class="site-v3-id-link" onclick="event.stopPropagation()">
+                                        1
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                    </a>
+                                </div>
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Location</span>
+                                    <span class="site-v3-cell-value">DFW-III-2-5-AC-23</span>
+                                    <span class="site-v3-cell-subvalue">Address 1</span>
+                                </div>
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Organization</span>
+                                    <span class="site-v3-cell-value">Org 1</span>
+                                    <span class="site-v3-cell-subvalue">Ref 1</span>
+                                </div>
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Metrics</span>
+                                    <div style="display: flex; gap: 8px; margin-top: 4px;">
+                                        <span class="site-v3-count-badge products" title="Products">10</span>
+                                        <span class="site-v3-count-badge open-sr" title="Open SRs">1</span>
+                                        <span class="site-v3-count-badge contracts" title="Service Contracts">10</span>
+                                    </div>
+                                </div>
+                                <div class="site-v3-cell-content" style="justify-content: flex-end; align-items: flex-end;">
+                                    <div class="site-v3-expand-icon">
+                                        <span class="material-symbols-outlined">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="site-v3-details-row">
+                        <td>
+                            <div class="site-v3-details-content">
+                                <div class="site-v3-details-grid">
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">location_on</span>
+                                            Location Details
+                                        </h4>
+                                        <p><strong>Site ID:</strong> DFW-III-2-5-AC-23</p>
+                                        <p><strong>Address:</strong> Address 1</p>
+                                        <p><strong>Customer Reference:</strong> Ref 1</p>
+                                    </div>
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">business</span>
+                                            Organization
+                                        </h4>
+                                        <p><strong>Name:</strong> Org 1</p>
+                                    </div>
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">inventory</span>
+                                            Products & Services
+                                        </h4>
+                                        <p><strong>Products:</strong> 10</p>
+                                        <p><strong>Service Contracts:</strong> 10</p>
+                                        <p><strong>Active Warranties:</strong> 5</p>
+                                    </div>
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">build</span>
+                                            Service Requests
+                                        </h4>
+                                        <p><strong>Open SRs:</strong> <span style="color: #fca5a5;">1</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Site 2 -->
+                    <tr class="site-v3-row" onclick="toggleSiteV3Details(this)">
+                        <td>
+                            <div class="site-v3-main-info">
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Site ID</span>
+                                    <a href="#" class="site-v3-id-link" onclick="event.stopPropagation()">
+                                        2
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                    </a>
+                                </div>
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Location</span>
+                                    <span class="site-v3-cell-value">DFW-III-2-5-AC-24</span>
+                                    <span class="site-v3-cell-subvalue">Address 2</span>
+                                </div>
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Organization</span>
+                                    <span class="site-v3-cell-value">Org 2</span>
+                                    <span class="site-v3-cell-subvalue">Ref 2</span>
+                                </div>
+                                <div class="site-v3-cell-content">
+                                    <span class="site-v3-cell-label">Metrics</span>
+                                    <div style="display: flex; gap: 8px; margin-top: 4px;">
+                                        <span class="site-v3-count-badge products" title="Products">20</span>
+                                        <span class="site-v3-count-badge no-sr" title="Open SRs">0</span>
+                                        <span class="site-v3-count-badge contracts" title="Service Contracts">20</span>
+                                    </div>
+                                </div>
+                                <div class="site-v3-cell-content" style="justify-content: flex-end; align-items: flex-end;">
+                                    <div class="site-v3-expand-icon">
+                                        <span class="material-symbols-outlined">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="site-v3-details-row">
+                        <td>
+                            <div class="site-v3-details-content">
+                                <div class="site-v3-details-grid">
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">location_on</span>
+                                            Location Details
+                                        </h4>
+                                        <p><strong>Site ID:</strong> DFW-III-2-5-AC-24</p>
+                                        <p><strong>Address:</strong> Address 2</p>
+                                        <p><strong>Customer Reference:</strong> Ref 2</p>
+                                    </div>
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">business</span>
+                                            Organization
+                                        </h4>
+                                        <p><strong>Name:</strong> Org 2</p>
+                                    </div>
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">inventory</span>
+                                            Products & Services
+                                        </h4>
+                                        <p><strong>Products:</strong> 20</p>
+                                        <p><strong>Service Contracts:</strong> 20</p>
+                                        <p><strong>Active Warranties:</strong> 5</p>
+                                    </div>
+                                    <div class="site-v3-detail-section">
+                                        <h4>
+                                            <span class="material-symbols-outlined">build</span>
+                                            Service Requests
+                                        </h4>
+                                        <p><strong>Open SRs:</strong> <span style="color: #86efac;">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<script>
+    function toggleSiteV3Details(row) {
+        const detailsRow = row.nextElementSibling;
+        const isExpanded = row.classList.contains('expanded');
+        
+        // Close all other expanded rows
+        document.querySelectorAll('.site-v3-row.expanded').forEach(r => {
+            if (r !== row) {
+                r.classList.remove('expanded');
+                r.nextElementSibling.classList.remove('expanded');
+            }
+        });
+        
+        // Toggle current row
+        if (isExpanded) {
+            row.classList.remove('expanded');
+            detailsRow.classList.remove('expanded');
+        } else {
+            row.classList.add('expanded');
+            detailsRow.classList.add('expanded');
+        }
+    }
+
+    // Search functionality
+    const siteV3SearchInput = document.getElementById('siteV3Search');
+    if (siteV3SearchInput) {
+        siteV3SearchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.site-v3-row').forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+                if (row.style.display === 'none') {
+                    row.nextElementSibling.style.display = 'none';
+                }
+            });
+        });
+    }
+</script>
 <!-- ELOOOI TABLE END -->
 <!--bindings={
   "ng-reflect-ng-if": "true"
