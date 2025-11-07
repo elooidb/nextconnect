@@ -53,6 +53,47 @@
       }
     </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- KPI Styling -->
+<style>
+  .kpi-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px 24px;
+    max-width: 280px;
+    font-family: system-ui, sans-serif;
+  }
+
+  .kpi-header {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .kpi-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .kpi-trend {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .kpi-trend.down {
+    color: #d9534f; /* red for downward trend */
+  }
+
+  .kpi-trend.up {
+    color: #28a745; /* green for upward trend */
+  }
+</style>
 <style>
     .gauge-container {
       width: 200px;
@@ -6577,17 +6618,13 @@ question_mark</span></span
                       </h1>
                     </div>
 					<a href="https://www.google.com">Export report</a>  
-                    <div class="elooicontainer">
+<div class="elooicontainer">
 
-	<div class="gauge-container">
-	<div class="gauge-title">Uptime</div>
-    <div class="gauge-wrapper">
-      <canvas id="gaugeChart"></canvas>
-      <div class="gauge-label" id="gaugeLabel">99.995%</div>
-    </div>
-  </div>
+<div class="gauge-container">
+<div class="gauge-title">Uptime</div>
+<div class="gauge-wrapper"><canvas id="gaugeChart"></canvas><div class="gauge-label" id="gaugeLabel">99.995%</div></div></div>
 
-  <script>
+<script>
     const ctx = document.getElementById('gaugeChart');
 
     new Chart(ctx, {
@@ -6612,7 +6649,19 @@ question_mark</span></span
       }
     });
   </script>
-						
+
+<div class="kpi-card">
+  <div class="kpi-header">
+    <span class="kpi-title">Average Time on Site</span>
+  </div>
+  <div class="kpi-body">
+    <span class="kpi-value">50&nbsp;min</span>
+    <span class="kpi-trend down">▼ Down (last 6 months)</span>
+  </div>
+</div>
+</div>
+
+<div class="elooicontainer">
 						<div class="elooibox red">
                         <h1>1</h1>
 						  <h3>Priority Health incidents under investigation</h3>
