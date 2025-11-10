@@ -6948,7 +6948,7 @@ question_mark</span></span
         const ctx = document.getElementById('paretoChart').getContext('2d');
 
         // Data
-        const categories = ["Compressor Short Cycling", "Fan Malfunction", "Suboptimal Setpoints", "Clogged Filter"];
+        const categories = ["Condenser Fan Fail", "Low Return Humidity", "Supply Air Over Temperature", "Compressor Superheat Over Threshold"];
         const values = [70, 40, 30, 10];
 
         // Sort descending for Pareto
@@ -7029,7 +7029,7 @@ question_mark</span></span
             	legend: { position: 'top' },
             	title: {
                 	display: true,
-                	text: 'Health Incident Pareto'
+                	text: 'Alarm Incident Pareto'
             	}
         	}
         };
@@ -7056,17 +7056,17 @@ new Chart(ctx2, {
         labels: monthLabels,
         datasets: [
             {
-                label: 'Compressor Short Cycling',
+                label: 'Condenser Fan Fail',
                 data: healthData,
                 backgroundColor: '#4A90E2'
             },
             {
-                label: 'Fan Malfunction',
+                label: 'Low Return Humidity',
                 data: batteryData,
                 backgroundColor: '#7ED957'
             },
             {
-                label: 'Clogged Filter',
+                label: 'Supply Air Over Temperature',
                 data: maintenanceData,
                 backgroundColor: '#F5A623'
             }
@@ -7079,7 +7079,7 @@ new Chart(ctx2, {
             legend: { position: 'top' },
             title: {
                 display: true,
-                text: 'Current Year Health Incident Count by Type'
+                text: 'Current Year Alarm Incident Count by Type'
             }
         },
         scales: {
@@ -7625,22 +7625,22 @@ new Chart(ctx2, {
                                             <span class="material-symbols-outlined">warning</span>
                                             Issue Description
                                         </h4>
-                                        <p><strong>Type:</strong> Compressor Short Cycling</p>
-                                        <p>Compressor short cycling causing extra wear and tear</p>
+                                        <p><strong>Type:</strong> Condenser Fan Fail</p>
+                                        <p>Compressor fan failure</p>
                                     </div>
                                     <div class="detail-section">
                                         <h4>
                                             <span class="material-symbols-outlined">priority_high</span>
                                             Impact Assessment
                                         </h4>
-                                        <p>Asset aging 4x the normal rate increasing the risk of failure</p>
+                                        <p>Asset fan failure</p>
                                     </div>
                                     <div class="detail-section">
                                         <h4>
                                             <span class="material-symbols-outlined">build</span>
                                             Recommendation / Resolution
                                         </h4>
-                                        <p>Adjusted load distribution on unit zone to avoid low loads that were causing the short cycling. No downtime required</p>
+                                        <p>Check fan health</p>
                                         <p><strong>Service Request:</strong> <a href="service-requests.html">SR-1</a></p>
                                     </div>
                                 </div>
@@ -7709,22 +7709,22 @@ new Chart(ctx2, {
                                             <span class="material-symbols-outlined">warning</span>
                                             Issue Description
                                         </h4>
-                                        <p><strong>Type:</strong> Compressor Short Cycling</p>
-                                        <p>Compressor short cycling causing extra wear and tear</p>
+                                        <p><strong>Type:</strong> Low Return Humidity</p>
+                                        <p>Low return humidity</p>
                                     </div>
                                     <div class="detail-section">
                                         <h4>
                                             <span class="material-symbols-outlined">priority_high</span>
                                             Impact Assessment
                                         </h4>
-                                        <p>Asset aging 4x the normal rate increasing the risk of failure</p>
+                                        <p>Low return humidity/p>
                                     </div>
                                     <div class="detail-section">
                                         <h4>
                                             <span class="material-symbols-outlined">build</span>
                                             Recommendation / Resolution
                                         </h4>
-                                        <p>Adjusted load distribution on unit zone to avoid low loads that were causing the short cycling. No downtime required</p>
+                                        <p>Low return humidity</p>
                                     </div>
                                 </div>
                             </div>
