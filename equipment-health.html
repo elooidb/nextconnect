@@ -61,7 +61,7 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      background-color: #fff;
+      background-color: transparent
     }
   </style>
 <!-- KPI Styling -->
@@ -6800,9 +6800,10 @@ question_mark</span></span
           title: {
             display: true,
             text: 'Probability of Failure',
-            font: { size: 18 }
+            font: { size: 18 },
+			color: '#ffffff'
           },
-          legend: { position: 'bottom' },
+          legend: { position: 'bottom', labels: { color: '#ffffff' } },
           tooltip: {
             callbacks: {
               label: function(context) {
@@ -6816,17 +6817,20 @@ question_mark</span></span
             min: 0,
             max: 100,
             ticks: {
+			  color: '#ffffff',
               callback: value => `${value}%`
             },
             title: {
               display: true,
-              text: 'Probability (%)'
+              text: 'Probability (%)',
+			  color: '#ffffff'
             }
           },
           x: {
             title: {
               display: true,
-              text: 'Month'
+              text: 'Month',
+			  color: '#ffffff'
             }
           }
         }
