@@ -53,6 +53,17 @@
       }
     </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    .chart-container {
+      width: 700px;
+      height: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: #fff;
+    }
+  </style>
 <!-- KPI Styling -->
 <style>
   .kpi-card {
@@ -6694,7 +6705,86 @@ question_mark</span></span
             </div>
             
             
-            
+<div class="chart-container">
+    <canvas id="failureChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('failureChart').getContext('2d');
+
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    // EQ-34-FC-RD: Linear increase from 0% to 20%
+    const eq34Data = months.map((_, i) => (i / 11) * 20);
+
+    // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
+    const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [
+          {
+            label: 'EQ-34-FC-RD',
+            data: eq34Data,
+            borderColor: '#1e88e5',
+            backgroundColor: 'rgba(30,136,229,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          },
+          {
+            label: 'AC-23-WD-45',
+            data: ac23Data,
+            borderColor: '#e53935',
+            backgroundColor: 'rgba(229,57,53,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Probability of Failure',
+            font: { size: 18 }
+          },
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => `${value}%`
+            },
+            title: {
+              display: true,
+              text: 'Probability (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Month'
+            }
+          }
+        }
+      }
+    });
+  </script>            
             
             
             
