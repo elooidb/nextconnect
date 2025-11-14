@@ -71,6 +71,18 @@
   		height: auto !important;
   		max-height: 400px; /* Adjust as needed */
 	}
+
+	.chart-wrapper {
+  		position: relative;
+  		width: 100%;
+  		height: 400px;
+	}
+
+	.chart-wrapper canvas {
+  		display: block;
+  		width: 100%;
+  		height: 100%;
+	}
   </style>
 <!-- KPI Styling -->
 <style>
@@ -6985,10 +6997,10 @@ question_mark</span></span
 </div>
 	
 	<div class="chart-container">
-    <canvas id="failureChart"></canvas>
-	<canvas id="componentFailureChart"></canvas>
-	<canvas id="componentFailureChart2"></canvas>
-</div>
+    <div class="chart-wrapper"><canvas id="failureChart"></canvas></div>
+	<div class="chart-wrapper"><canvas id="componentFailureChart"></canvas></div>
+	<div class="chart-wrapper"><canvas id="componentFailureChart2"></canvas></div>
+	</div>
 
   <script>
     const ctx = document.getElementById('failureChart').getContext('2d');
