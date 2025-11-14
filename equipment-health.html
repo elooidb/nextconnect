@@ -52,6 +52,137 @@
         }
       }
     </style>
+	  <style>
+    #multiselect-component {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #multiselect-component * {
+        box-sizing: border-box;
+    }
+
+    #multiselect-component .multiselect-container {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+    }
+
+    #multiselect-component h2 {
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #multiselect-component .multiselect-pane {
+        border: 2px solid #667eea;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f8f9fa;
+    }
+
+    #multiselect-component .search-box {
+        padding: 12px;
+        background: white;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    #multiselect-component .search-box input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    #multiselect-component .search-box input:focus {
+        border-color: #667eea;
+    }
+
+    #multiselect-component .options-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    #multiselect-component .option-item {
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    #multiselect-component .option-item:hover {
+        background-color: #e7f0ff;
+    }
+
+    #multiselect-component .option-item.selected {
+        background-color: #667eea;
+        color: white;
+    }
+
+    #multiselect-component .option-item input[type="checkbox"] {
+        margin-right: 10px;
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+    }
+
+    #multiselect-component .option-item label {
+        cursor: pointer;
+        flex: 1;
+    }
+
+    #multiselect-component .selected-count {
+        margin-top: 20px;
+        padding: 15px;
+        background: #e7f0ff;
+        border-radius: 8px;
+        text-align: center;
+        color: #667eea;
+        font-weight: 600;
+    }
+
+    #multiselect-component .button-group {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    #multiselect-component button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    #multiselect-component .select-all {
+        background: #667eea;
+        color: white;
+    }
+
+    #multiselect-component .select-all:hover {
+        background: #5568d3;
+    }
+
+    #multiselect-component .clear-all {
+        background: #e9ecef;
+        color: #333;
+    }
+
+    #multiselect-component .clear-all:hover {
+        background: #d3d7dc;
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     .chart-container {
@@ -6772,7 +6903,102 @@ question_mark</span></span
 
 
 <div class="elooicontainer">
-	
+<div id="multiselect-component">
+    <div class="multiselect-container">
+        <h2>Select Your Asset</h2>       
+        <div class="multiselect-pane">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search assets...">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const options = [
+            'EQ-34-FC-RD',
+            'AC-23-WD-45'
+        ];
+
+        let selectedItems = new Set();
+
+        function renderOptions(filter = '') {
+            const list = document.getElementById('optionsList');
+            list.innerHTML = '';
+            
+            const filtered = options.filter(opt => 
+                opt.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            filtered.forEach((option, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option-item';
+                if (selectedItems.has(option)) {
+                    div.classList.add('selected');
+                }
+                
+                div.innerHTML = `
+                    <input type="checkbox" id="opt${idx}" ${selectedItems.has(option) ? 'checked' : ''}>
+                    <label for="opt${idx}">${option}</label>
+                `;
+                
+                div.onclick = (e) => {
+                    if (e.target.type !== 'checkbox') {
+                        const checkbox = div.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    toggleOption(option, div);
+                };
+                
+                list.appendChild(div);
+            });
+
+            updateCount();
+        }
+
+        function toggleOption(option, div) {
+            if (selectedItems.has(option)) {
+                selectedItems.delete(option);
+                div.classList.remove('selected');
+            } else {
+                selectedItems.add(option);
+                div.classList.add('selected');
+            }
+            updateCount();
+        }
+
+        function updateCount() {
+            document.getElementById('selectedCount').textContent = 
+                `${selectedItems.size} item${selectedItems.size !== 1 ? 's' : ''} selected`;
+        }
+
+        window.multiselectSelectAll = function() {
+            const searchValue = document.getElementById('searchInput').value;
+            const filtered = options.filter(opt => 
+                opt.toLowerCase().includes(searchValue.toLowerCase())
+            );
+            filtered.forEach(opt => selectedItems.add(opt));
+            renderOptions(searchValue);
+        };
+
+        window.multiselectClearAll = function() {
+            selectedItems.clear();
+            renderOptions(document.getElementById('searchInput').value);
+        };
+
+        // Get selected items programmatically
+        window.getMultiselectValues = function() {
+            return Array.from(selectedItems);
+        };
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderOptions(e.target.value);
+        });
+
+        renderOptions();
+    })();
+</script>
+<div class="chart-container">	
 <div class="elooicontainer">
 <table
                       _ngcontent-ng-c560033025=""
@@ -6996,7 +7222,7 @@ question_mark</span></span
                   </table>
 </div>
 	
-	<div class="chart-container">
+	
     <div class="chart-wrapper"><canvas id="failureChart"></canvas></div>
 	<div class="chart-wrapper"><canvas id="componentFailureChart"></canvas></div>
 	<div class="chart-wrapper"><canvas id="componentFailureChart2"></canvas></div>
