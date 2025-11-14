@@ -7083,7 +7083,7 @@ question_mark</span></span
     });
   </script> 
 <script>
-    const ctx = document.getElementById('componentFailureChart').getContext('2d');
+    const ctx2 = document.getElementById('componentFailureChart').getContext('2d');
 
     const months = [
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -7096,7 +7096,7 @@ question_mark</span></span
     // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
     const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
 
-    new Chart(ctx, {
+    new Chart(ctx2, {
       type: 'line',
       data: {
         labels: months,
@@ -7163,7 +7163,7 @@ question_mark</span></span
     });
   </script> 
   <script>
-    const ctx = document.getElementById('componentFailureChart2').getContext('2d');
+    const ctx3 = document.getElementById('componentFailureChart2').getContext('2d');
 
     const months = [
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -7176,7 +7176,7 @@ question_mark</span></span
     // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
     const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
 
-    new Chart(ctx, {
+    new Chart(ctx3, {
       type: 'line',
       data: {
         labels: months,
