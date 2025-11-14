@@ -7085,25 +7085,25 @@ question_mark</span></span
 <script>
     const ctx2 = document.getElementById('componentFailureChart').getContext('2d');
 
-    const months = [
+    const months2 = [
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
 
     // EQ-34-FC-RD: Linear increase from 0% to 20%
-    const eq34Data = months.map((_, i) => (i / 11) * 20);
+    const eq34Data2 = months2.map((_, i) => (i / 11) * 20);
 
     // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
-    const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
+    const ac23Data2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
 
     new Chart(ctx2, {
       type: 'line',
       data: {
-        labels: months,
+        labels: months2,
         datasets: [
           {
             label: 'EQ-34-FC-RD - FANS',
-            data: eq34Data,
+            data: eq34Data2,
             borderColor: '#1e88e5',
             backgroundColor: 'rgba(30,136,229,0.2)',
             tension: 0.3,
@@ -7111,7 +7111,7 @@ question_mark</span></span
           },
           {
             label: 'AC-23-WD-45 - FANS',
-            data: ac23Data,
+            data: ac23Data2,
             borderColor: '#e53935',
             backgroundColor: 'rgba(229,57,53,0.2)',
             tension: 0.3,
@@ -7165,25 +7165,25 @@ question_mark</span></span
   <script>
     const ctx3 = document.getElementById('componentFailureChart2').getContext('2d');
 
-    const months = [
+    const months3 = [
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
 
     // EQ-34-FC-RD: Linear increase from 0% to 20%
-    const eq34Data = months.map((_, i) => (i / 11) * 20);
+    const eq34Data3 = months3.map((_, i) => (i / 11) * 20);
 
     // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
-    const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
+    const ac23Data3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
 
     new Chart(ctx3, {
       type: 'line',
       data: {
-        labels: months,
+        labels: months3,
         datasets: [
           {
             label: 'EQ-34-FC-RD - FILTERS',
-            data: eq34Data,
+            data: eq34Data3,
             borderColor: '#1e88e5',
             backgroundColor: 'rgba(30,136,229,0.2)',
             tension: 0.3,
@@ -7191,7 +7191,7 @@ question_mark</span></span
           },
           {
             label: 'AC-23-WD-45 - FILTERS',
-            data: ac23Data,
+            data: ac23Data3,
             borderColor: '#e53935',
             backgroundColor: 'rgba(229,57,53,0.2)',
             tension: 0.3,
