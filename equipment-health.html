@@ -61,6 +61,8 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	  flex-direction: column;
+  	  gap: 20px; /* Space between charts */
       background-color: transparent
     }
   </style>
@@ -6978,7 +6980,8 @@ question_mark</span></span
 	
 	<div class="chart-container">
     <canvas id="failureChart"></canvas>
-    </div>
+	<canvas id="componentFailureChart"></canvas>
+	<canvas id="componentFailureChart2"></canvas>
 </div>
 
   <script>
@@ -7023,7 +7026,7 @@ question_mark</span></span
         plugins: {
           title: {
             display: true,
-            text: 'Probability of Failure',
+            text: 'Asset Probability of Failure',
             font: { size: 18 },
 			color: '#ffffff'
           },
@@ -7061,8 +7064,166 @@ question_mark</span></span
       }
     });
   </script> 
+<script>
+    const ctx = document.getElementById('componentFailureChart').getContext('2d');
 
-                    
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    // EQ-34-FC-RD: Linear increase from 0% to 20%
+    const eq34Data = months.map((_, i) => (i / 11) * 20);
+
+    // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
+    const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [
+          {
+            label: 'EQ-34-FC-RD - FANS',
+            data: eq34Data,
+            borderColor: '#1e88e5',
+            backgroundColor: 'rgba(30,136,229,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          },
+          {
+            label: 'AC-23-WD-45 - FANS',
+            data: ac23Data,
+            borderColor: '#e53935',
+            backgroundColor: 'rgba(229,57,53,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'FAN Component Probability of Failure',
+            font: { size: 18 },
+			color: '#ffffff'
+          },
+          legend: { position: 'bottom', labels: { color: '#ffffff' } },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: 100,
+            ticks: {
+			  color: '#ffffff',
+              callback: value => `${value}%`
+            },
+            title: {
+              display: true,
+              text: 'Probability (%)',
+			  color: '#ffffff'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Month',
+			  color: '#ffffff'
+            }
+          }
+        }
+      }
+    });
+  </script> 
+  <script>
+    const ctx = document.getElementById('componentFailureChart2').getContext('2d');
+
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    // EQ-34-FC-RD: Linear increase from 0% to 20%
+    const eq34Data = months.map((_, i) => (i / 11) * 20);
+
+    // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
+    const ac23Data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [
+          {
+            label: 'EQ-34-FC-RD - FILTERS',
+            data: eq34Data,
+            borderColor: '#1e88e5',
+            backgroundColor: 'rgba(30,136,229,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          },
+          {
+            label: 'AC-23-WD-45 - FILTERS',
+            data: ac23Data,
+            borderColor: '#e53935',
+            backgroundColor: 'rgba(229,57,53,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'FILTER Component Probability of Failure',
+            font: { size: 18 },
+			color: '#ffffff'
+          },
+          legend: { position: 'bottom', labels: { color: '#ffffff' } },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: 100,
+            ticks: {
+			  color: '#ffffff',
+              callback: value => `${value}%`
+            },
+            title: {
+              display: true,
+              text: 'Probability (%)',
+			  color: '#ffffff'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Month',
+			  color: '#ffffff'
+            }
+          }
+        }
+      }
+    });
+  </script>                 
                     
                     <!--bindings={}-->
                     <div _ngcontent-ng-c560033025="" class="last-refreshed">
