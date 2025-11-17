@@ -7230,7 +7230,7 @@ question_mark</span></span
 	
     <div class="chart-wrapper"><canvas id="failureChart"></canvas></div>
 	<div class="chart-wrapper"><canvas id="componentFailureChart"></canvas></div>
-	<div class="chart-wrapper"><canvas id="componentFailureChart2"></canvas></div>
+	<!--<div class="chart-wrapper"><canvas id="componentFailureChart2"></canvas></div>-->
 	</div>
 
   <script>
@@ -7327,6 +7327,12 @@ question_mark</span></span
     // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
     const ac23Data2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 50].map(v => v);
 
+	// EQ-34-FC-RD: Linear increase from 0% to 20%
+    const eq34Data3 = months3.map((_, i) => (i / 11) * 20);
+
+    // AC-23-WD-45: 0% to 10% until October, then jumps to 50% in Dec
+    const ac23Data3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 20, 40, 50].map(v => v);
+
     new Chart(ctx2, {
       type: 'line',
       data: {
@@ -7347,6 +7353,22 @@ question_mark</span></span
             backgroundColor: 'rgba(229,57,53,0.2)',
             tension: 0.3,
             borderWidth: 2
+          },
+			{
+            label: 'EQ-34-FC-RD - FILTERS',
+            data: eq34Data3,
+            borderColor: '#e535d6',
+            backgroundColor: 'rgba(30,136,229,0.2)',
+            tension: 0.3,
+            borderWidth: 2
+          },
+			{
+            label: 'EQ-34-FC-RD - FILTERS',
+            data: eq34Data3,
+            borderColor: '#15e82a',
+            backgroundColor: 'rgba(30,136,229,0.2)',
+            tension: 0.3,
+            borderWidth: 2
           }
         ]
       },
@@ -7355,7 +7377,7 @@ question_mark</span></span
         plugins: {
           title: {
             display: true,
-            text: 'FAN Component Probability of Failure',
+            text: 'Component Probability of Failure',
             font: { size: 18 },
 			color: '#ffffff'
           },
