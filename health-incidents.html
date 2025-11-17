@@ -6784,37 +6784,104 @@ new Chart(ctx, {
 });
 
 	/* ============= Incidents Chart ============= */
-	const ctx2 = document.getElementById('IncidentsChart').getContext('2d');
+const ctx2 = document.getElementById('IncidentsChart').getContext('2d');
 
 /* Month labels for the full year */
 const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/* Site names */
+const sites = ['DFW-III-2-5-AC-23', 'DFW-III-2-5-AC-24', 'DFW-III-2-5-AC-25'];
 
 /* Data per type (0 everywhere except March and September) */
 const healthData =      [0, 0, 10, 0, 0, 0, 0, 0, 5,  0, 0, 0];
 const batteryData =     [0, 0, 1,  0, 0, 0, 0, 0, 2,  0, 0, 0];
 const maintenanceData = [0, 0, 4,  0, 0, 0, 0, 0, 1,  0, 0, 0];
 
+/* Color palettes for each incident type across sites */
+const colorPalettes = {
+    health: [
+        'rgba(74, 144, 226, 0.9)',   // Site 1 - Blue
+        'rgba(74, 144, 226, 0.6)',   // Site 2 - Lighter Blue
+        'rgba(74, 144, 226, 0.3)'    // Site 3 - Lightest Blue
+    ],
+    battery: [
+        'rgba(126, 217, 87, 0.9)',   // Site 1 - Green
+        'rgba(126, 217, 87, 0.6)',   // Site 2 - Lighter Green
+        'rgba(126, 217, 87, 0.3)'    // Site 3 - Lightest Green
+    ],
+    maintenance: [
+        'rgba(245, 166, 35, 0.9)',   // Site 1 - Orange
+        'rgba(245, 166, 35, 0.6)',   // Site 2 - Lighter Orange
+        'rgba(245, 166, 35, 0.3)'    // Site 3 - Lightest Orange
+    ]
+};
+
+/* Create datasets for each incident type and site combination */
+const datasets = [
+    // Compressor Short Cycling - All 3 sites
+    {
+        label: 'Compressor Short Cycling - DFW-III-2-5-AC-23',
+        data: healthData,
+        backgroundColor: colorPalettes.health[0],
+        stack: 'health'
+    },
+    {
+        label: 'Compressor Short Cycling - DFW-III-2-5-AC-24',
+        data: healthData,
+        backgroundColor: colorPalettes.health[1],
+        stack: 'health'
+    },
+    {
+        label: 'Compressor Short Cycling - DFW-III-2-5-AC-25',
+        data: healthData,
+        backgroundColor: colorPalettes.health[2],
+        stack: 'health'
+    },
+    // Fan Malfunction - All 3 sites
+    {
+        label: 'Fan Malfunction - DFW-III-2-5-AC-23',
+        data: batteryData,
+        backgroundColor: colorPalettes.battery[0],
+        stack: 'battery'
+    },
+    {
+        label: 'Fan Malfunction - DFW-III-2-5-AC-24',
+        data: batteryData,
+        backgroundColor: colorPalettes.battery[1],
+        stack: 'battery'
+    },
+    {
+        label: 'Fan Malfunction - DFW-III-2-5-AC-25',
+        data: batteryData,
+        backgroundColor: colorPalettes.battery[2],
+        stack: 'battery'
+    },
+    // Clogged Filter - All 3 sites
+    {
+        label: 'Clogged Filter - DFW-III-2-5-AC-23',
+        data: maintenanceData,
+        backgroundColor: colorPalettes.maintenance[0],
+        stack: 'maintenance'
+    },
+    {
+        label: 'Clogged Filter - DFW-III-2-5-AC-24',
+        data: maintenanceData,
+        backgroundColor: colorPalettes.maintenance[1],
+        stack: 'maintenance'
+    },
+    {
+        label: 'Clogged Filter - DFW-III-2-5-AC-25',
+        data: maintenanceData,
+        backgroundColor: colorPalettes.maintenance[2],
+        stack: 'maintenance'
+    }
+];
+
 new Chart(ctx2, {
     type: 'bar',
     data: {
         labels: monthLabels,
-        datasets: [
-            {
-                label: 'Compressor Short Cycling',
-                data: healthData,
-                backgroundColor: '#4A90E2'
-            },
-            {
-                label: 'Fan Malfunction',
-                data: batteryData,
-                backgroundColor: '#7ED957'
-            },
-            {
-                label: 'Clogged Filter',
-                data: maintenanceData,
-                backgroundColor: '#F5A623'
-            }
-        ]
+        datasets: datasets
     },
     options: {
         responsive: true,
@@ -6823,11 +6890,15 @@ new Chart(ctx2, {
             legend: { position: 'top' },
             title: {
                 display: true,
-                text: 'Current Year Health Incident Count by Type'
+                text: 'Current Year Health Incident Count by Type - Multi-Site Analysis'
             }
         },
         scales: {
+            x: {
+                stacked: true
+            },
             y: {
+                stacked: true,
                 beginAtZero: true,
                 title: { display: true, text: 'Count' }
             }
