@@ -7111,6 +7111,20 @@ question_mark</span></span
                 row.style.display = text.includes(searchTerm) ? '' : 'none';
             });
         });
+
+		// Add click handlers to all table cells
+        function addCellClickHandlers() {
+            const allCells = document.querySelectorAll('td');
+            allCells.forEach(cell => {
+                cell.addEventListener('click', function() {
+                    window.location.href = 'https://elooidb.github.io/nextpredict/health-incidents.html';
+                });
+            });
+        }
+
+        // Initialize cell click handlers on page load
+        addCellClickHandlers();
+		
     </script>
 
  <!--ELOOOI TABLE-->
