@@ -6972,10 +6972,6 @@ question_mark</span></span
             updateCount();
         }
 
-        function updateCount() {
-            document.getElementById('selectedCount').textContent = 
-                `${selectedItems.size} item${selectedItems.size !== 1 ? 's' : ''} selected`;
-        }
 
         window.multiselectSelectAll = function() {
             const searchValue = document.getElementById('searchInput').value;
