@@ -6705,7 +6705,7 @@ const colors = [
 ];
 
 // Create datasets for each site
-const datasets = sites.map((site, index) => ({
+const datasets2 = sites.map((site, index) => ({
     type: 'bar',
     label: site,
     data: sortedValues,
@@ -6715,7 +6715,7 @@ const datasets = sites.map((site, index) => ({
 }));
 
 // Add cumulative percentage line
-datasets.push({
+datasets2.push({
     type: 'line',
     label: 'Cumulative %',
     data: cumulativePercent,
@@ -6732,7 +6732,7 @@ datasets.push({
 
 const data = {
     labels: sortedCategories,
-    datasets: datasets
+    datasets: datasets2
 };
 
 const options = {
