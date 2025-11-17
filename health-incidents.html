@@ -6658,11 +6658,11 @@ question_mark</span></span
 <h2>Health Incident Distribution</h2>
 <div style="display: flex; justify-content: space-between; gap: 20px; max-width: 100%; margin: 20px auto;">
     <!-- Pareto Chart -->
-    <div style="width: 45%; height: 300px;">
+    <div style="width: 45%; height: 600px;">
         <canvas id="paretoChart"></canvas>
     </div>
 	<!-- Incidents Chart -->
-    <div style="width: 45%; height: 300px;">
+    <div style="width: 45%; height: 600px;">
         <canvas id="IncidentsChart"></canvas>
     </div>
 
@@ -6740,14 +6740,15 @@ const options = {
     maintainAspectRatio: false,
     scales: {
         x: {
-            stacked: true
+            stacked: true,
         },
         y: {
             stacked: true,
             beginAtZero: true,
             title: {
                 display: true,
-                text: 'Incident Count'
+                text: 'Incident Count',
+				color: '#ffffff'
             }
         },
         percentage: {
@@ -6765,15 +6766,17 @@ const options = {
             },
             title: {
                 display: true,
-                text: 'Cumulative %'
+                text: 'Cumulative %',
+				color: '#ffffff'
             }
         }
     },
     plugins: {
-        legend: { position: 'top' },
+        legend: { position: 'top', labels: { color: '#ffffff' } },
         title: {
             display: true,
-            text: 'Health Incident Pareto - Multi-Site Analysis'
+            text: 'Health Incident Pareto - Multi-Site Analysis',
+			color: '#ffffff'
         }
     }
 };
@@ -6887,10 +6890,11 @@ new Chart(ctx2, {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { position: 'top' },
+            legend: { position: 'top', labels: { color: '#ffffff' } },
             title: {
                 display: true,
-                text: 'Current Year Health Incident Count by Type - Multi-Site Analysis'
+                text: 'Current Year Health Incident Count by Type - Multi-Site Analysis',
+				color: '#ffffff'
             }
         },
         scales: {
@@ -6900,7 +6904,7 @@ new Chart(ctx2, {
             y: {
                 stacked: true,
                 beginAtZero: true,
-                title: { display: true, text: 'Count' }
+                title: { display: true, text: 'Count', color: '#ffffff' }
             }
         }
     }
