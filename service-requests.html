@@ -6547,7 +6547,7 @@ question_mark</span></span
 
 
                     <!-- Container for the chart -->
-<h2>Service Request Distribution</h2>
+<h2>Predictive Service Request Distribution</h2>
 <div style="display: flex; justify-content: space-between; gap: 20px; max-width: 100%; margin: 20px auto;">
     <!-- Severity Chart -->
     <div style="width: 45%; height: 300px;">
@@ -7009,14 +7009,131 @@ new Chart(ctx2, {
 
                   </table>
                     
-
-                  
-
-
  <!--ELOOOI TABLE-->
 
                     
-                    
+ <h2>Preventive Service Request Distribution</h2>   
+ 
+ <div style="display: flex; justify-content: space-between; gap: 20px; max-width: 100%; margin: 20px auto;">
+    <!-- Severity Chart -->
+    <div style="width: 45%; height: 300px;">
+        <canvas id="severityChart2"></canvas>
+    </div>
+
+    <!-- Service Request Chart -->
+    <div style="width: 45%; height: 300px;">
+        <canvas id="serviceRequestChart2"></canvas>
+    </div>
+</div>
+					  
+<script>
+/* ============= Severity Chart ============= */
+const ctx3 = document.getElementById('severityChart2').getContext('2d');
+
+new Chart(ctx3, {
+    type: 'bar',
+    data: {
+        labels: ['High', 'Medium', 'Low'],
+        datasets: [{
+            data: [99, 100, 50],
+			backgroundColor: [
+                'red',      // High
+                'orange',   // Medium
+                'green'     // Low
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+		plugins: {
+            legend: {
+                display: false // Ensure no legend appears
+            },
+			title: {
+                display: true,
+                text: 'Percentage (%) Service Requests closed on time per severity'
+            }
+        },
+		datalabels: {
+                color: 'white',
+                anchor: 'center',
+                align: 'center',
+                font: {
+                    weight: 'bold',
+                    size: 14
+                },
+                formatter: function(value) {
+                    return value + '%'; // Show percentage inside the bar
+                }
+            },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Percentage (%)'
+                }
+            }
+        }
+    }
+});
+
+/* ============= Service Request Chart ============= */
+const ctx4 = document.getElementById('serviceRequestChart2').getContext('2d');
+
+/* Month labels for the full year */
+const monthLabels2 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/* Data per type (0 everywhere except March and September) */
+const healthData2 =      [0, 0, 10, 0, 0, 0, 0, 0, 5,  0, 0, 0];
+const batteryData2 =     [0, 0, 1,  0, 0, 0, 0, 0, 2,  0, 0, 0];
+const maintenanceData2 = [0, 0, 4,  0, 0, 0, 0, 0, 1,  0, 0, 0];
+
+new Chart(ctx4, {
+    type: 'bar',
+    data: {
+        labels: monthLabels2,
+        datasets: [
+            {
+                label: '14-Critical Fan Failure',
+                data: healthData2,
+                backgroundColor: '#4A90E2'
+            },
+            {
+                label: '12-Battery Replacement',
+                data: batteryData2,
+                backgroundColor: '#7ED957'
+            },
+            {
+                label: '10-General Maintenance',
+                data: maintenanceData2,
+                backgroundColor: '#F5A623'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            title: {
+                display: true,
+                text: 'Current Year Service Request Count by Type'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Count' }
+            }
+        }
+    }
+});
+</script>
+
+
                     <!--bindings={}-->
                     <div _ngcontent-ng-c560033025="" class="last-refreshed">
                       Last Refreshed: 10-27-2025 11:29:44.049
